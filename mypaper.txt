@@ -1,0 +1,109 @@
+<title>Using groff to prepare your paper</title>
+<author>a01-Wuji Zhang</author>
+<institution>College of Computer Information Engineering, Jiangxi Normal University</institution>
+<abstraction>
+<i>groff</i>(GNU troff) is a typesetting system that reads plain text
+mixed with formatting commands and produces formatted output.
+Output may be PostScript or PDF, HTML, or text for display at
+terminal. Present on most Unix/Linux systems owing to its
+long association with Unix manuals, 
+<i>groff</i>is capable of producing
+typographically sophisticated documents while consuming only
+minimal system resources.
+</abstraction>
+<h1>History</h1>
+<p>
+The first version of UNIX was developed on a PDP-7 which was sitting
+around Bell Labs.  In 1971 the developers wanted to get a PDP-11 for
+further work on the operating system.  In order to justify the cost for
+this system, they proposed that they would implement a document
+formatting system for the AT&T patents division.  This first formatting
+program was a reimplementation of McIllroy's `roff', written by
+J. F. Ossanna.
+</p>
+<p>
+James Clark began work on a GNU implementation of `ditroff' in
+early 1989. It was declared a stable (i.e. non-beta) package with the release of
+version 1.04 around November 1991.
+</p>
+<h1>Why using groff?</h1>
+<p>
+Although WYSIWYG\(dg systems may be easier to use, they have a number of
+disadvantages compared to `troff':
+<foot>
+\(dg WYSIWYG: What you see is what you get.
+</foot>
+</p>
+<li> *
+They must be used on a graphics display to work on a document.
+</li>
+<li> *
+Most of the WYSIWYG systems are either non-free or are not very 
+portable.
+</li>
+<li> *
+`troff' is firmly entrenched in all UNIX systems.
+</li>
+<li> *
+It is difficult to have a wide range of capabilities available 
+within the confines of a GUI/window system.
+</li>
+<li> *
+It is more difficult to make global changes to a document.
+</li>
+<quote>
+"GUIs normally make it simple to accomplish simple actions and
+impossible to accomplish complex actions."  -Doug Gwyn (22/Jun/91
+in `comp.unix.wizards')
+</quote>
+<h1>Table</h1>
+<p>
+This is an example of how to create table using tbl.
+</p>
+<table>
+center, box, tab(@);
+c s
+c l.
+\fBTable a01: \fPSome well-known TCP Ports
+_
+23@telnet
+25@simple mail transfer protocal(SMTP)
+80@hyper text transfer protocal(HTTP)
+110@post office protocol(POP)
+</table>
+<h1>Equation</h1>
+<p>
+This is an example of how to write math equation using eqn.
+</p>
+<equation> (1.a01)
+f( zeta ) -=- 1 over {2 pi i} int from C
+f(z) over {z - zeta} dz
+</equation>
+<h1>Picture</h1>
+<p>
+This is an example of how to draw picture using pic.
+</p>
+<picture>
+.ps -1
+box invis "document"; arrow
+box dashed "pic"; arrow
+box dashed "tbl"; arrow
+box dashed "eqn"; arrow
+box "groff"; arrow
+box invis "typesetter"
+[ box invis "macro" "package"
+spline right then up -> ] with .ne at 2nd last box.s
+.ps +1
+</picture>
+<h1>Convert it to pdf</h1>
+<p>
+Suppose your file has been saved as a01.ms, then you can convert it to a01.pdf using command as follows:
+</p>
+<pre> C
+.I
+groff -t -e -p -ms a01.ms | ps2pdf - a01.pdf 
+.R
+</pre>
+<p>
+Look, it is so simply, enjoy your work!
+</p>
